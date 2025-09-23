@@ -228,10 +228,10 @@
 
   // ---------- centipede ----------
   function spawnCentipede(lvl){
-    const segCount = 5 + Math.min(20, Math.floor(lvl/2) + ri(0,3));
+    const segCount = 14 + Math.min(20, Math.floor(lvl/2) + ri(0,3));
     const startX = ri(60, innerWidth-60);
-    const head = { x: startX, y: -40, vx: 18 + Math.random()*26 + lvl*0.4, vy: 10 + Math.random()*6 + lvl*0.18, phase: Math.random()*Math.PI*2, amp: 26 + Math.min(70, lvl*2.4) };
-    const segSpacing = 12;
+    const head = { x: startX: 100, y: -28, vx: 10 + Math.random()*26 + lvl*0.4, vy: 100 + Math.random()*6 + lvl*0.18, phase: Math.random()*Math.PI*2, amp: 26 + Math.min(70, lvl*2.4) };
+    const segSpacing = 25;
     const path = [];
     for(let i=0;i<Math.ceil(segCount*segSpacing)+20;i++) path.push({x: head.x, y: head.y + i*2});
     const segments = [];
@@ -641,3 +641,4 @@
 </script>
 </body>
 </html>
+
