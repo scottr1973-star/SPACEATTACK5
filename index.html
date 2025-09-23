@@ -178,7 +178,7 @@
   // levels/time
   let level = 1;
   let levelStart = performance.now();
-  const LEVEL_DURATION = 180000; // 3 minutes per level
+  const LEVEL_DURATION = 160000; // 2.66 minutes per level
 
   // ---------- helpers ----------
   const ri = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
@@ -190,7 +190,7 @@
   function spawnWave(){
     const lvl = level;
     // centipede chance on multiples of 5, but mixed in
-    if(lvl % 1 === 0 && Math.random() < 0.8) spawnCentipede(lvl);
+    if(lvl % 1 === 1 && Math.random() < 0.8) spawnCentipede(lvl);
 
     const base = 2;
     const add = Math.floor(Math.min(12, lvl / 2.2));
@@ -641,6 +641,7 @@
 </script>
 </body>
 </html>
+
 
 
 
