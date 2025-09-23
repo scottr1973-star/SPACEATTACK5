@@ -108,7 +108,7 @@
 
   // ---------- starfield ----------
   const stars = [];
-  function initStars(){ stars.length=0; for(let i=0;i<260;i++){ stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:0.6+Math.random()*1.8,spd:20+Math.random()*80}); } }
+  function initStars(){ stars.length=0; for(let i=0;i<360;i++){ stars.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,s:0.6+Math.random()*1.8,spd:20+Math.random()*80}); } }
   initStars(); addEventListener('resize', initStars);
 
   // ---------- draw helpers ----------
@@ -641,6 +641,7 @@
 </script>
 </body>
 </html>
+
 
 
 
