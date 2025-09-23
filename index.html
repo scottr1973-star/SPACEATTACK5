@@ -190,7 +190,7 @@
   function spawnWave(){
     const lvl = level;
     // centipede chance on multiples of 5, but mixed in
-    if(lvl % 5 === 0 && Math.random() < 0.6) spawnCentipede(lvl);
+    if(lvl % 1 === 0 && Math.random() < 0.9) spawnCentipede(lvl);
 
     const base = 3;
     const add = Math.floor(Math.min(12, lvl / 2.2));
@@ -641,3 +641,4 @@
 </script>
 </body>
 </html>
+
