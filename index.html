@@ -159,7 +159,7 @@
     const d=420; if(ageMs>d) return false;
     const p=ageMs/d;
     for(let i=0;i<8;i++){
-      const a=i*Math.PI/4 + p*2; const r=8+36*p;
+      const a=i*Math.PI/4 + p*2; const r=16+36*p;
       const x1=x+Math.cos(a)*r, y1=y+Math.sin(a)*r;
       strokeFill(`rgba(255,${Math.floor(180-120*p)},${Math.floor(40+40*p)},${1-p})`,'#000',1.2);
       g.beginPath(); g.moveTo(x,y); g.lineTo(x1,y1);
@@ -190,9 +190,9 @@
   function spawnWave(){
     const lvl = level;
     // centipede chance on multiples of 5, but mixed in
-    if(lvl % 5 === 0 && Math.random() < 0.6) spawnCentipede(lvl);
+    if(lvl % 1 === 0 && Math.random() < 0.8) spawnCentipede(lvl);
 
-    const base = 3;
+    const base = 2;
     const add = Math.floor(Math.min(12, lvl / 2.2));
     const count = base + add + ri(0,1);
     const spacing = innerWidth/(count+1);
@@ -641,4 +641,5 @@
 </script>
 </body>
 </html>
+
 
