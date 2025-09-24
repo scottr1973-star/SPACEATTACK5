@@ -606,11 +606,11 @@
     // HUD drawn via DOM
   }
 
-  // Start / end
+ // Start / end
   function start(){
     ensureAudio(); resumeAudio(); sfxStart();
     startMusic();
-    const head = {x:..., y:(lvl===1?-18:-40 - q*36), vy:..., phase:..., amp:...};
+    running=true;
     player={ x:innerWidth/2, y:innerHeight-70, lasers:[], missiles:[], missileAmmo:8, cd:0, missileCd:0 };
     score=0; lives=3; enemies=[]; specials=[]; explosions=[]; enemyShots=[]; centipedes=[];
     level=1; levelStart=nowT();
