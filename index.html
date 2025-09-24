@@ -33,7 +33,6 @@
 <body>
 <canvas id="cv"></canvas>
 
-<!-- Splash -->
 <section id="splash" class="overlay" style="background:radial-gradient(800px 400px at 50% -10%, rgba(54,162,255,.06), transparent 60%), #000;">
   <h1>SPACE ATTACK</h1>
   <div class="row" style="margin-bottom:12px">
@@ -49,7 +48,6 @@
   </div>
 </section>
 
-<!-- HUD -->
 <div id="hud" style="display:none">
   <div class="lives" id="lives"></div>
   <div id="score">Score 0 • Level 1</div>
@@ -57,7 +55,6 @@
 </div>
 <div id="hint" class="hint" style="display:none">Tilt enabled • Joystick overrides tilt when used</div>
 
-<!-- Game Over -->
 <section id="gameover" class="overlay" style="display:none;background:radial-gradient(800px 400px at 50% -10%, rgba(54,162,255,.04), transparent 60%), #000;">
   <h1>Game Over</h1>
   <div id="finalScore" style="margin-bottom:12px">Score: 0</div>
@@ -71,7 +68,6 @@
   </div>
 </section>
 
-<!-- Controls -->
 <div id="controls" class="controls" style="display:none">
   <div class="joystick" id="joystick"><div class="stick" id="stick"></div></div>
   <div class="firePad">
@@ -259,7 +255,7 @@
   // Spawn waves
   function spawnWave(){
     const lvl = level;
-    const count = 2 + Math.floor(Math.min(9, lvl/2));
+    const count = 3 + Math.floor(Math.min(9, lvl/2));
     const spacing = innerWidth/(count+1);
     const shooterChance = Math.min(0.75, 0.08 + lvl*0.01);
     for(let i=0;i<count;i++){
@@ -278,12 +274,12 @@
 
   // Centipede spawn & update - spacing tightened to 7, path cap 800, integer color cycling
   function spawnCentipede(lvl){
-    const base = 2 + Math.floor(lvl/7);
+    const base = 6 + Math.floor(lvl/1.7);
     const segCount = Math.min(28, base + ri(0, Math.floor(lvl/2)));
-    const qty = (lvl >= 1 ? (1 + Math.floor((lvl-4)/6)) : 2);
+    const qty = (lvl >= 6 ? (1 + Math.floor((lvl-4)/6)) : 1);
     for(let q=0;q<qty;q++){
       const head = { x: innerWidth/2 + (q - (qty-1)/2)*60, y: -40 - q*36, vy: 18 + Math.random()*6 + lvl*0.6, phase: Math.random()*Math.PI*2, amp: Math.max(120, Math.floor(innerWidth/2)-80) };
-      const segSpacing = 3; // segments touch
+      const segSpacing = 7; // segments touch
       const path=[];
       for(let i=0;i<Math.ceil(segCount*segSpacing)+40;i++) path.push({x:head.x,y:head.y+i*2});
       const segments=[];
@@ -371,6 +367,7 @@
 
   // Main loop
   last = performance.now();
+  let lastCentipedeDeath = 0;
   function loop(){
     if(!running) return;
     const t = performance.now(), dt = Math.min(0.05,(t-last)/1000); last = t; frame++;
@@ -403,6 +400,11 @@
     if(now > nextComet){ spawnComet(); scheduleSpecials(); }
 
     updateCentipedes(dt);
+
+    if (centipedes.length === 0 && now - lastCentipedeDeath > 1000) {
+      spawnCentipede(level);
+      lastCentipedeDeath = now;
+    }
 
     for(const e of enemies){
       if(!e.alive){ if(!e.deadAt) e.deadAt = now; continue; }
@@ -609,7 +611,7 @@
     running=true;
     player={ x:innerWidth/2, y:innerHeight-70, lasers:[], missiles:[], missileAmmo:8, cd:0, missileCd:0 };
     score=0; lives=3; enemies=[]; specials=[]; explosions=[]; enemyShots=[]; centipedes=[];
-    level=1; levelStart=nowT();
+    level=1; levelStart=nowT(); lastCentipedeDeath = nowT();
     updateHUD(); scheduleSpecials(true); spawnWave(); spawnCentipede(1);
     splash.style.display='none'; hud.style.display='flex'; controlsEl.style.display='flex'; toggle.style.display='block';
     toggle.textContent = `Controls: ${useTilt?'Tilt':'Touch'}`;
@@ -640,7 +642,3 @@
 </script>
 </body>
 </html>
-
-
-
-
