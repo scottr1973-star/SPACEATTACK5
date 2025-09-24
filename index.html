@@ -461,7 +461,7 @@
         for(let si=0; si<cent.segments.length; si++){
           const seg = cent.segments[si];
           if(Math.abs(L.x - seg.x) < 14 && Math.abs(L.y - seg.y) < 12){
-            spawnExplosion(seg.x, seg.y, 'bullet'); score += 8; L.life = -1; splitCentipede(ci, si); break;
+            spawnExplosion(seg.x, seg.y, 'missile'); score += 8; L.life = -1; splitCentipede(ci, si); break;
           }
         }
       }
