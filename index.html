@@ -280,7 +280,7 @@
   function spawnCentipede(lvl){
     const base = 6 + Math.floor(lvl/1.7);
     const segCount = Math.min(28, base + ri(0, Math.floor(lvl/2)));
-    const qty = (lvl >= 6 ? (1 + Math.floor((lvl-4)/6)) : 1);
+    const qty = (lvl >= 1 ? (1 + Math.floor((lvl-4)/6)) : 1);
     for(let q=0;q<qty;q++){
       const head = { x: innerWidth/2 + (q - (qty-1)/2)*60, y: -40 - q*36, vy: 18 + Math.random()*6 + lvl*0.6, phase: Math.random()*Math.PI*2, amp: Math.max(120, Math.floor(innerWidth/2)-80) };
       const segSpacing = 7; // segments touch
@@ -640,3 +640,4 @@
 </script>
 </body>
 </html>
+
