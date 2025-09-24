@@ -259,7 +259,7 @@
   // Spawn waves
   function spawnWave(){
     const lvl = level;
-    const count = 3 + Math.floor(Math.min(9, lvl/2));
+    const count = 2 + Math.floor(Math.min(9, lvl/2));
     const spacing = innerWidth/(count+1);
     const shooterChance = Math.min(0.75, 0.08 + lvl*0.01);
     for(let i=0;i<count;i++){
@@ -278,7 +278,7 @@
 
   // Centipede spawn & update - spacing tightened to 7, path cap 800, integer color cycling
   function spawnCentipede(lvl){
-    const base = 6 + Math.floor(lvl/1.7);
+    const base = 3 + Math.floor(lvl/1.7);
     const segCount = Math.min(28, base + ri(0, Math.floor(lvl/2)));
     const qty = (lvl >= 1 ? (1 + Math.floor((lvl-4)/6)) : 1);
     for(let q=0;q<qty;q++){
@@ -640,4 +640,5 @@
 </script>
 </body>
 </html>
+
 
